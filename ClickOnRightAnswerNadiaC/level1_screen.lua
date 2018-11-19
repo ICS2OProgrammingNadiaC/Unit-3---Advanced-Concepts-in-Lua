@@ -127,6 +127,11 @@ local function LoseScreenTransition( )
     composer.gotoScene( "you_lose", {effect = "zoomInOutFade", time = 1000})
 end 
 
+-- Function that transitions to Win Screen
+local function WinScreenTransition( )
+    composer.gotoScene( "you_win", {effect = "Flip", time = 1000})
+end
+
 -- The function that displays the equation and determines the answer and the wrong answers
 local function DisplayAddEquation()
     -- local variables to this function
