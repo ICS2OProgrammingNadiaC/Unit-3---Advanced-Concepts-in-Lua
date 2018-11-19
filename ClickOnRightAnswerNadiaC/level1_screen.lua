@@ -31,6 +31,11 @@ sceneName = "level1_screen"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+local correctSound = audio.loadSound( "Sounds/CorrectAnswer.mp3")
+
+-----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
@@ -80,8 +85,13 @@ local alreadyClickedAnswer = false
 -----------------------------------------------------------------------------------------
 -- SOUND
 -----------------------------------------------------------------------------------------
+-- create correct sound
+local correctSound = audio.loadSound( "Sounds/CorrectAnswer.mp3")
+local correctSoundChannel
 
-
+-- create incorrect sound
+local incorrectSound = audio.loadSound( "Sounds/kidsBooing.mp3")
+local incorrectSoundChannel
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -181,9 +191,16 @@ local function TouchListenerAnswer(touch)
 
         -- if the user gets the answer right, display Correct and call RestartSceneRight
         if (answer == tonumber(userAnswer)) then     
+            correctSoundChannel = audio.play(correctSound)
             correct.isVisible = true
             -- increase the number correct by 1
             numberCorrect = numberCorrect + 1
+            if (numberCorrect == 2) then 
+                composer.gotoScene("you_win")
+            else
+                -- call RestartScene after 1 second
+                timer.performWithDelay( 1000, RestartScene )
+            end
             -- call RestartScene after 1 second
             timer.performWithDelay( 1000, RestartScene )
         end        
@@ -201,6 +218,7 @@ local function TouchListenerWrongAnswer1(touch)
 
 
         if (answer ~= tonumber(userAnswer)) then
+            incorrectSoundChannel = audio.play(incorrectSound)
             -- decrease a life
             lives = lives - 1
             -- call RestartScene after 1 second
@@ -221,6 +239,7 @@ local function TouchListenerWrongAnswer2(touch)
 
 
             if (answer ~= tonumber(userAnswer)) then
+                incorrectSoundChannel = audio.play(incorrectSound)
                 -- decrease a life
                 lives = lives - 1
                 -- call RestartScene after 1 second
