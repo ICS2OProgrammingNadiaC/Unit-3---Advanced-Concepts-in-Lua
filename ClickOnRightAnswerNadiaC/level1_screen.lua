@@ -218,7 +218,6 @@ local function TouchListenerWrongAnswer1(touch)
 
 
         if (answer ~= tonumber(userAnswer)) then
-            incorrectSoundChannel = audio.play(incorrectSound)
             -- decrease a life
             lives = lives - 1
             -- call RestartScene after 1 second
@@ -239,7 +238,7 @@ local function TouchListenerWrongAnswer2(touch)
 
 
             if (answer ~= tonumber(userAnswer)) then
-                incorrectSoundChannel = audio.play(incorrectSound)
+
                 -- decrease a life
                 lives = lives - 1
                 -- call RestartScene after 1 second
