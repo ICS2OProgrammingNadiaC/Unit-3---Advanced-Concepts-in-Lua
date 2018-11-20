@@ -31,11 +31,6 @@ sceneName = "level1_screen"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
--- SOUNDS
------------------------------------------------------------------------------------------
-local correctSound = audio.loadSound( "Sounds/CorrectAnswer.mp3")
-
------------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
@@ -44,7 +39,7 @@ local bkg
 
 -- determine the range for the numbers to add
 local MIN_NUM = 1
-local MAX_NUM = 10
+local MAX_NUM = 15
 
 -- the variables containing the first and second numbers to add for the equation
 local firstNumber
@@ -54,6 +49,7 @@ local secondNumber
 local answer 
 local wrongAnswer1
 local wrongAnswer2
+local wrongAnswer3
 
 -- the text object that will hold the addition equation
 local addEquationTextObject 
@@ -62,6 +58,7 @@ local addEquationTextObject
 local answerTextObject 
 local wrongAnswer1TextObject
 local wrongAnswer2TextObject
+local wrongAnswer3TextObject
 
 -- displays the number correct that the user has
 local numberCorrectText 
@@ -113,21 +110,32 @@ local function DisplayAnswers( )
 
     if (answerPosition == 1) then                
         
-        answerTextObject.x = display.contentWidth*.3        
-        wrongAnswer1TextObject.x = display.contentWidth*.2
-        wrongAnswer2TextObject.x = display.contentWidth*.1 
+        answerTextObject.x = display.contentWidth*.4        
+        wrongAnswer1TextObject.x = display.contentWidth*.3
+        wrongAnswer2TextObject.x = display.contentWidth*.2
+        wrongAnswer3TextObject.x = display.contentWidth*.1 
+
 
     elseif (answerPosition == 2) then
        
-        answerTextObject.x = display.contentWidth*.2        
-        wrongAnswer1TextObject.x = display.contentWidth*.1
+        answerTextObject.x = display.contentWidth*.1     
+        wrongAnswer1TextObject.x = display.contentWidth*.4
         wrongAnswer2TextObject.x = display.contentWidth*.3 
+        wrongAnswer3TextObject.x = display.contentWidth*.2
+
+    elseif (answerPosition == 3) then
+        answerTextObject.x = display.contentWidth*.1     
+        wrongAnswer1TextObject.x = display.contentWidth*.4
+        wrongAnswer2TextObject.x = display.contentWidth*.3 
+        wrongAnswer3TextObject.x = display.contentWidth*.2
+
 
     else
        
         answerTextObject.x = display.contentWidth*.1        
         wrongAnswer1TextObject.x = display.contentWidth*.2
         wrongAnswer2TextObject.x = display.contentWidth*.3
+        wrongAnswer2TextObject.x = display.contentWidth*.1 
     end
 
 end
@@ -254,6 +262,7 @@ local function AddTextObjectListeners()
     answerTextObject:addEventListener("touch", TouchListenerAnswer)
     wrongAnswer1TextObject:addEventListener("touch", TouchListenerWrongAnswer1)
     wrongAnswer2TextObject:addEventListener("touch", TouchListenerWrongAnswer2)
+    wrongAnswer3TextObject:addEventListener("touch", TouchListenerWrongAnswer3)
 
 end
 
@@ -263,7 +272,7 @@ local function RemoveTextObjectListeners()
     answerTextObject:removeEventListener("touch", TouchListenerAnswer)
     wrongAnswer1TextObject:removeEventListener("touch", TouchListenerWrongAnswer1)
     wrongAnswer2TextObject:removeEventListener("touch", TouchListenerWrongAnswer2)
-
+    wrongAnswer3TextObject:removeEventListener("touch", TouchListenerWrongAnswer3)
 end
 
 -----------------------------------------------------------------------------------------
@@ -301,6 +310,7 @@ function scene:create( event )
     answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight/2, nil, 50 )
     wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 50 )
     wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 50 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight/2, nil, 50 )
     numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 25)
 
     -- create the text object that will hold the number of lives
