@@ -23,7 +23,7 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
  
 -- The local variables for this scene
-local beetleship
+local companyLogo
 local scrollXSpeed = 8
 local scrollYSpeed = -3
 local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
