@@ -50,6 +50,7 @@ local answer
 local wrongAnswer1
 local wrongAnswer2
 local wrongAnswer3
+local wrongAnswer4
 
 -- the text object that will hold the addition equation
 local addEquationTextObject 
@@ -98,15 +99,17 @@ local function DetermineAnswers()
     answer = firstNumber + secondNumber
     wrongAnswer1 = answer + math.random(1,4)
     wrongAnswer2 = answer + math.random(5,8)
+    wrongAnswer3 = answer + math.random(9,15)
 end
 
 -- Function that changes the answers for a new question and places them randomly in one of the positions
 local function DisplayAnswers( )
 
-    local answerPosition = math.random(1,3)
+    local answerPosition = math.random(1,4)
     answerTextObject.text = tostring( answer )
     wrongAnswer1TextObject.text = tostring( wrongAnswer1 )
     wrongAnswer2TextObject.text = tostring( wrongAnswer2 )
+    wrongAnswer3TextObject.text = tostring( wrongAnswer3 )
 
     if (answerPosition == 1) then                
         
@@ -114,6 +117,7 @@ local function DisplayAnswers( )
         wrongAnswer1TextObject.x = display.contentWidth*.3
         wrongAnswer2TextObject.x = display.contentWidth*.2
         wrongAnswer3TextObject.x = display.contentWidth*.1 
+
 
 
     elseif (answerPosition == 2) then
@@ -135,7 +139,7 @@ local function DisplayAnswers( )
         answerTextObject.x = display.contentWidth*.1        
         wrongAnswer1TextObject.x = display.contentWidth*.2
         wrongAnswer2TextObject.x = display.contentWidth*.3
-        wrongAnswer2TextObject.x = display.contentWidth*.1 
+        wrongAnswer3TextObject.x = display.contentWidth*.1 
     end
 
 end
