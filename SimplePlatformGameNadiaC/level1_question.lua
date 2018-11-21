@@ -164,7 +164,7 @@ end
 local function PositionAnswers()
 
     --creating random start position in a cretain area
-    answerPosition = math.random(1,3)
+    answerPosition = math.random(1,4)
 
     if (answerPosition == 1) then
 
@@ -178,7 +178,7 @@ local function PositionAnswers()
         wrongText2.y = Y2
 
         wrongText3.x = X2
-        wrongText3.y = X2
+        wrongText3.y = Y2
 
         
     elseif (answerPosition == 2) then
@@ -208,7 +208,7 @@ local function PositionAnswers()
         wrongText2.y = Y1
 
         wrongText3.x = X2
-        wrongText3.y = X1
+        wrongText3.y = Y1
             
     end
 end
@@ -257,6 +257,7 @@ function scene:create( event )
     sceneGroup:insert(answerText)
     sceneGroup:insert(wrongText1)
     sceneGroup:insert(wrongText2)
+    sceneGroup:insert(wrongText3)
 
 
 end --function scene:create( event )
