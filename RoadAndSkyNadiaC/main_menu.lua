@@ -35,6 +35,7 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 local playButton
 local creditsButton
+local backButton
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -184,14 +185,14 @@ function scene:hide( event )
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
 
+
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
     end
 
-end -- function scene:hide( event )
-
+end 
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to be destroyed
@@ -204,7 +205,11 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 
-end -- function scene:destroy( event )
+    bkg_image
+    playButton
+    creditsButton
+    backButton
+end 
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
