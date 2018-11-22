@@ -49,7 +49,7 @@ function scene:create( event )
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
-   
+    bkg.isVisible = true
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
   
