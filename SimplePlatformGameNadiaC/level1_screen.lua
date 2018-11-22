@@ -253,6 +253,7 @@ local function onCollision( self, event )
             if (questionsAnswered == 3) then
                 -- after getting 3 questions right, go to the you win screen
                 composer.gotoScene( "you_win" )
+                lArrow.isVisible = false
 
             end
         end        
