@@ -3,16 +3,8 @@
 -- credits_screen.lua
 -- Created by: Daniel Lopez-Carreon
 -- Date: Nov. 24th, 2014
--- Description: This is the you win screen
+-- Description: This is the you lose screen
 -----------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------
--- SOUNDS
------------------------------------------------------------------------------------------
--- you win sound
-local youWinSound = audio.loadSound( "Sounds/yabbadabbalaugh.wav")
-local youWinSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -29,7 +21,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_win"
+sceneName = "you_lose"
 
 -- Creating Scene Object
 local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
@@ -50,11 +42,13 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/Winscreen.png")
+    bkg_image = display.newImage("Images/Losescreen.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
+
+    
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
@@ -75,15 +69,13 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
-        -- play youWinSound 
-        youWinSoundChannel = audio.play(youWinSound)
+
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-
     end
 
 end -- function scene:show( event )
