@@ -29,8 +29,8 @@ local logo
 local bottom
 
 --Spring sound effect
- local springsound = audio.loadSound( "Sounds/BoingSoundEffect.mp3" )
- local springSoundChannel
+local springsound = audio.loadSound( "Sounds/BoingSoundEffect.mp3" )
+local springSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
