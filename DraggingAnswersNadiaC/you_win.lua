@@ -6,14 +6,6 @@
 -- Description: This is the you win screen
 -----------------------------------------------------------------------------------------
 
-
------------------------------------------------------------------------------------------
--- SOUNDS
------------------------------------------------------------------------------------------
--- you win sound
-local youWinSound = audio.loadSound( "Sounds/yabbadabbalaugh.wav")
-local youWinSoundChannel
-
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -76,7 +68,19 @@ function scene:show( event )
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
         -- play youWinSound 
-        youWinSoundChannel = audio.play(youWinSound)
+        if (answer == tonumber(userAnswer)) then     
+            correctSoundChannel = audio.play(correctSound)
+            correct.isVisible = true
+            -- increase the number correct by 1
+            numberCorrect = numberCorrect + 1
+            if (numberCorrect == 3) then 
+                composer.gotoScene("you_win")
+            else
+                -- call RestartScene after 1 second
+                timer.performWithDelay( 1000, RestartScene )
+            end
+        end
+
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then

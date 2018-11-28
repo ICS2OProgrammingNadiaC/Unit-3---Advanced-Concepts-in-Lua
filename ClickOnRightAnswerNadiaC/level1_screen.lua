@@ -73,6 +73,8 @@ local congratulationText
 -- Displays text that says correct.
 local correct 
 
+local numberCorrect
+
 -- Displays the level text of time text
 local level1Text 
 

@@ -38,7 +38,10 @@ local questionText
 local correctAnswer
 local alternateAnswer1
 local alternateAnswer2
-local alternateAnswer3    
+local alternateAnswer3   
+
+-- create numberCorrect
+local numberCorrect 
 
 -- Variables containing the user answer and the actual answer
 local userAnswer
@@ -143,8 +146,8 @@ local function PositionAnswers()
         -- set the new y-positions of each of the answers
         answerbox.y = display.contentHeight * 0.4
 
-        --alternateAnswerBox2
-        alternateAnswerBox2.y = display.contentHeight * 0.85
+        --alternateAnswerBox3
+        alternateAnswerBox3.y = display.contentHeight * 0.85
 
         --alternateAnswerBox2
         alternateAnswerBox2.y = display.contentHeight * 0.70
@@ -397,6 +400,19 @@ local function TouchListenerAnswerBox3(touch)
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
 
+                if (answer == tonumber(userAnswer)) then     
+                    correctSoundChannel = audio.play(correctSound)
+                    correct.isVisible = true
+                    -- increase the number correct by 1
+                    numberCorrect = numberCorrect + 1
+                    if (numberCorrect == 3) then 
+                        composer.gotoScene("you_win")
+                    else
+                     -- call RestartScene after 1 second
+                        timer.performWithDelay( 1000, RestartScene )
+                    end
+                end
+        
             --else make box go back to where it was
             else
                 alternateAnswerBox3.x = alternateAnswerBox3PreviousX
@@ -519,6 +535,7 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        numberCorrect = 0
         RestartLevel1()
         AddAnswerBoxEventListeners() 
 
