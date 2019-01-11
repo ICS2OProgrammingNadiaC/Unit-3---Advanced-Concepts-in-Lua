@@ -77,6 +77,8 @@ local userAnswerBoxPlaceholder
 local correctSound
 local booSound
 
+local wrong = 0
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -226,6 +228,11 @@ end
 -- Transitioning Function to YouWin screen
 local function YouWinTransitionLevel1( )
     composer.gotoScene("you_win", {effect = "fade", time = 500})
+end
+
+-- Transitioning Function to YouWin screen
+local function YouLoseTransitionLevel1( )
+    composer.gotoScene("you_lose", {effect = "fade", time = 500})
 end
 
 -- Function to Restart Level 1
@@ -411,8 +418,34 @@ local function TouchListenerAnswerBox3(touch)
                      -- call RestartScene after 1 second
                         timer.performWithDelay( 1000, RestartScene )
                     end
+
+                else (tonumber == alternateAnswer1 ) then
+                    answered = answered + 1
+                    if (answered == 3) then
+                        composer.gotoScene("you_lose")
+                    else
+                        -- call RestartScene after 1 second
+                        timer.performWithDelay( 1000, RestartScene )
+                    end
+
+                else (tonumber == alternateAnswer2 ) then
+                    answered = answered + 1
+                    if (answered == 3) then
+                        composer.gotoScene("you_lose")
+                    else
+                        -- call RestartScene after 1 second
+                        timer.performWithDelay( 1000, RestartScene )
+                    end
                 end
-        
+
+                else (tonumber == alternateAnswer3 ) then
+                    answered = answered + 1
+                    if (answered == 3) then
+                        composer.gotoScene("you_lose")
+                    else
+                        -- call RestartScene after 1 second
+                        timer.performWithDelay( 1000, RestartScene )
+                    end
             --else make box go back to where it was
             else
                 alternateAnswerBox3.x = alternateAnswerBox3PreviousX
