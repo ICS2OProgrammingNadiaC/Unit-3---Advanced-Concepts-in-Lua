@@ -244,8 +244,19 @@ end
 
 -- Function to Check User Input
 local function CheckUserAnswerInput()
-          
-    timer.performWithDelay(1600, RestartLevel1) 
+    if (answer == tonumber(userAnswer)) then     
+        correctSoundChannel = audio.play(correctSound)
+        correct.isVisible = true
+        -- increase the number correct by 1
+        numberCorrect = numberCorrect  + 1
+        if (numberCorrect == 3) then 
+            composer.gotoScene("you_win")
+        else
+            -- call RestartScene after 1 second
+            timer.performWithDelay( 1000, RestartLevel1 )
+        end
+    end
+
 end
 
 local function TouchListenerAnswerbox(touch)
@@ -407,45 +418,7 @@ local function TouchListenerAnswerBox3(touch)
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
 
-                if (answer == tonumber(userAnswer)) then     
-                    correctSoundChannel = audio.play(correctSound)
-                    correct.isVisible = true
-                    -- increase the number correct by 1
-                    numberCorrect = numberCorrect + 1
-                    if (numberCorrect == 3) then 
-                        composer.gotoScene("you_win")
-                    else
-                     -- call RestartScene after 1 second
-                        timer.performWithDelay( 1000, RestartScene )
-                    end
 
-                else (tonumber == alternateAnswer1 ) then
-                    answered = answered + 1
-                    if (answered == 3) then
-                        composer.gotoScene("you_lose")
-                    else
-                        -- call RestartScene after 1 second
-                        timer.performWithDelay( 1000, RestartScene )
-                    end
-
-                else (tonumber == alternateAnswer2 ) then
-                    answered = answered + 1
-                    if (answered == 3) then
-                        composer.gotoScene("you_lose")
-                    else
-                        -- call RestartScene after 1 second
-                        timer.performWithDelay( 1000, RestartScene )
-                    end
-                end
-
-                else (tonumber == alternateAnswer3 ) then
-                    answered = answered + 1
-                    if (answered == 3) then
-                        composer.gotoScene("you_lose")
-                    else
-                        -- call RestartScene after 1 second
-                        timer.performWithDelay( 1000, RestartScene )
-                    end
             --else make box go back to where it was
             else
                 alternateAnswerBox3.x = alternateAnswerBox3PreviousX
